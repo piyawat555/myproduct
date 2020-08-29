@@ -25,12 +25,16 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <img src="https://www.pngkey.com/png/full/233-2331134_shopee-700x217-shopee-logo-no-background.png" width="125px">                    
+                    <a href="/">
+                        <img src="https://www.pngkey.com/png/full/233-2331134_shopee-700x217-shopee-logo-no-background.png" width="125px">
+                    </a>
+                                        
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="/">หน้าหลัก</a></li>  
+                       
                         @if (Auth::guard('admin')->check())
+                        <li><a href="{{ route('admin.allowproduct') }}">ตรวจสอบสินค้า</a></li>  
                         <li><a href="{{ route('admin.dashboard') }}">สินค้าทั้งหมด</a></li>  
                         <li><a href="{{ route('admin.addproduct') }}">เพิ่มข้อมูลสินค้า</a></li> 
                        
@@ -44,6 +48,7 @@
                      @else
                       
                      @if (Auth::guard('web')->check())
+                   
                      <li><a href="/home">สินค้าต่างๆ</a></li>  
                      <li><a href="/cart/{{ Auth::user()->id }}">สินค้าของคุณ</a></li>  
                      <li><a href="{{ route('user.status',Auth::user()->id) }}">สถานะสินค้าที่สั่ง</a></li>
