@@ -24,6 +24,8 @@ Route::get('/removeproduct/{id}','cartController@remove')->name('user.removeprod
 Route::get('/users/logout','Auth\LoginController@userLogout')->name('user.logout');
 Route::post('/orderuser','OrderController@order')->name('user.order');
 Route::get('/statusUser/{id}','statusOrderController@status')->name('user.status');
+Route::get('/login/facebook', 'Auth\LoginController@redirectToProvider')->name('login.fb');
+Route::get('/login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::prefix('admin')->group(function(){
 Route::get('/','AdminController@index')->name('admin.dashboard');

@@ -173,7 +173,7 @@
         </div>
 
         <div class="modal-body">
-         <p>{{$item->addressuserorder }}</p>            
+         <p class="ppppp9">{{$item->addressuserorder }}</p>            
         </div>
         
         <div class="modal-footer">

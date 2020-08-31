@@ -41,6 +41,14 @@
                           
            </div>
        </form>
+
+       <form action="{{ route('login.fb') }}" method="GET">
+        <button type="submit" id="btn"class="btn btn-secondary">
+            <a>Login FB</a> 
+         </button>
+       </form>
+     
+
         </div>
     </div>
 

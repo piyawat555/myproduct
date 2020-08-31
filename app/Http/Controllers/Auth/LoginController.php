@@ -5,6 +5,8 @@ use Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -48,5 +50,27 @@ class LoginController extends Controller
 
       
        return redirect('/');
+    }
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->stateless()->user();
+        $user=User::firstOrCreate([
+            'name'=>$user->getName(),
+            'email'=>$user->getEmail(),
+            'provider_id'=>$user->getId()
+        ]);
+        Auth::Login($user,true);
+        return redirect('/home');
+        // $user->token;
     }
 }
